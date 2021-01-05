@@ -1,9 +1,22 @@
 import logo from './logo.svg';
+import Header from './components/HeaderComponent';
+import Services from './components/ServicesComponent';
+import Contact from './components/ContactUsComponent';
+import Footer from './components/FooterComponent';
+import Workflow from './components/WorkflowComponent';
+import About from './components/AboutUsComponent';
 import './App.css';
 
 function App() {
   return (
-      <div><h2>This is a test attempt</h2></div>
+    <>
+      <Header/>
+      <Services/>
+      <Workflow/>
+      <About/>
+      <Contact/>
+      <Footer/>
+    </>
   );
 }
 

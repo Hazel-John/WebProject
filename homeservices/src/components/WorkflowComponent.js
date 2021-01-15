@@ -24,7 +24,6 @@ class Workflow extends Component{
                     </div>
                 </div>
 
-                {/* <!-- ***** Mini Box Start ***** --> */}
                 <div class="row">
                     <div class="col-lg-2 col-md-3 col-sm-6 col-6">
                         <p href="#" class="mini-box">
@@ -69,14 +68,10 @@ class Workflow extends Component{
                         </p>
                     </div>
                 </div>
-                {/* <!-- ***** Mini Box End ***** --> */}
             </div>
         </div>
     </section>
         )
     }
 }
-/* <!-- ***** Home Parallax Start ***** -->
-    
-    <!-- ***** Home Parallax End ***** --> */
 export default Workflow;

@@ -23,19 +23,8 @@ class Login extends Component {
     }
     
   
-    //componentWillReceiveProps(nextProps) {
-      // Will allow parent components to pass in a boolean
-      // telling this component when to render
-    //  this.setState({
-    //    showModal: nextProps.isVisible,
-    //  });
-    //}
   
     onSubmit() {
-      // TODO: Handle login
-  
-      // If we let the parent handle the visibility, we just call
-      // the onLogin callback passed in and don't set this.state.showModal
       this.props.onLogin();
     }
 

@@ -1,6 +1,25 @@
 import React,{Component} from 'react';
+import ServiceModal from './ServiceModalComponent';
 
 class Services extends Component{
+
+    constructor(props){
+        super(props);
+
+        this.openservices = this.openservices.bind(this);
+    }
+
+    openservices(typeofservice){
+        switch(typeofservice){
+            case 'plumbing': <ServiceModal type="plumbing"/>; break;
+            case 'electrician' : <ServiceModal type="electrician"/>; break;
+            case 'carpentry' : <ServiceModal type="carpentry"/>; break;
+            case 'pestControl' : <ServiceModal type="pestControl"/>; break;
+            case 'cleaning' : <ServiceModal type="cleaning"/>; break;
+            case 'homeSalon' : <ServiceModal type="homeSalon"/>; break;
+        }
+    }
+
     render(){
         return(
                 <section class="section home-feature">
@@ -9,7 +28,7 @@ class Services extends Component{
                         <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
-                                    <div class="features-small-item">
+                                    <div class="features-small-item" onClick={this.openservices('plumbing')}>
                                         <div class="icon">
                                             <i><img width="150" height="150" src="plumber.jpg" alt=""/></i>
                                         </div>
@@ -18,7 +37,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
-                                    <div class="features-small-item">
+                                    <div class="features-small-item " onclick="openservices('electrician')">
                                         <div class="icon">
                                             <i><img width="150" height="150" src="electrician.jpg" alt=""/></i>
                                         </div>
@@ -27,7 +46,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
-                                    <div class="features-small-item">
+                                    <div class="features-small-item" onclick="openservices('carpentry')">
                                         <div class="icon">
                                             <i><img width="150" height="150" src="carpenter.jpg" alt=""/></i>
                                         </div>
@@ -36,7 +55,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
-                                    <div class="features-small-item">
+                                    <div class="features-small-item" onclick="openservices('pestControl')">
                                         <div class="icon">
                                             <i><img width="150" height="150" src="pestControl.jpg" alt=""/></i>
                                         </div>
@@ -45,7 +64,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
-                                    <div class="features-small-item">
+                                    <div class="features-small-item" onclick="openservices('cleaning')">
                                         <div class="icon">
                                             <i><img width="150" height="150" src="cleaning.jpg" alt=""/></i>
                                         </div>
@@ -54,7 +73,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
-                                    <div class="features-small-item">
+                                    <div class="features-small-item" onclick="openservices('homeSalon')">
                                         <div class="icon">
                                             <i><img width="150" height="150" src="salon.jpg" alt=""/></i>
                                         </div>

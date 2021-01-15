@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import axios from 'axios';
 
 
 class RegisterForm2 extends Component {
@@ -23,20 +24,9 @@ class RegisterForm2 extends Component {
     }
     
   
-    //componentWillReceiveProps(nextProps) {
-      // Will allow parent components to pass in a boolean
-      // telling this component when to render
-    //  this.setState({
-    //    showModal: nextProps.isVisible,
-    //  });
-    //}
   
     onSubmit() {
-      // TODO: Handle login
-  
-      // If we let the parent handle the visibility, we just call
-      // the onLogin callback passed in and don't set this.state.showModal
-      this.props.onLogin();
+      
     }
 
     handleChange(e) {
@@ -57,7 +47,12 @@ class RegisterForm2 extends Component {
           fields["mobileno"] = "";
           fields["password"] = "";
           this.setState({fields:fields});
-          alert("Form submitted");
+          var user={
+            "username": this.state.fields["username"],
+            "password": this.state.fields["password"]
+          };
+          axios.post('http://localhost:5000/users/add',user)
+          .then(res => console.log(res.data))
       }
 
     }
@@ -86,7 +81,6 @@ class RegisterForm2 extends Component {
       }
 
       if (typeof fields["emailid"] !== "undefined") {
-        //regular expression for email validation
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         if (!pattern.test(fields["emailid"])) {
           formIsValid = false;

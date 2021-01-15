@@ -66,7 +66,6 @@ class Header extends Component{
                                         <li><a href="#welcome" class="active">Home</a></li>
                                         <li><a href="#features" class="">About</a></li>
                                         <li><a href="#work-process" class="">Work Process</a></li>
-                                        <li><a href="#testimonials" class="">Testimonials</a></li>
                                         <li><a href="#pricing-plans" class="" onClick={()=>this.loginmodel()}>Login</a></li>
                                         <li><a href="#contact-us" class="">Contact Us</a></li>
                                         <Dropdown isOpen={this.state.drop} >

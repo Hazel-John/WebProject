@@ -4,7 +4,6 @@ class About extends Component {
     render() {
         return (
          <>   
-        {/* // <!-- ***** Features Big Item Start ***** --> */}
         <section class="section padding-top-70 padding-bottom-0" id="features">
             <div class="container">
                 <div class="row">
@@ -30,9 +29,6 @@ class About extends Component {
                 </div>
             </div>
         </section>
-        {/* <!-- ***** Features Big Item End ***** -->
-
-        <!-- ***** Features Big Item Start ***** --> */}
         <section class="section padding-bottom-100">
             <div class="container">
                 <div class="row">
@@ -53,7 +49,6 @@ class About extends Component {
                 </div>
             </div>
         </section>
-        {/* <!-- ***** Features Big Item End ***** --></section> */}
         </>
             )
         }

@@ -46,12 +46,19 @@ class RegisterForm2 extends Component {
           fields["emailid"] = "";
           fields["mobileno"] = "";
           fields["password"] = "";
+          fields["serviceType"] = "";
+          fields["charge"] = "";
           this.setState({fields:fields});
           var user={
             "username": this.state.fields["username"],
-            "password": this.state.fields["password"]
+            "password": this.state.fields["password"],
+            "emailid": this.state.fields["emailid"],
+            "mobileno": this.state.fields["mobileno"],
+            "serviceType": this.state.fields["serviceType"],
+            "charge": this.state.fields["charge"],
+
           };
-          axios.post('http://localhost:5000/users/add',user)
+          axios.post('http://localhost:5000/serviceProviders/add',user)
           .then(res => console.log(res.data))
       }
 
@@ -99,6 +106,17 @@ class RegisterForm2 extends Component {
           errors["mobileno"] = "*Please enter valid mobile no.";
         }
       }
+      if (!fields["charge"]) {
+        formIsValid = false;
+        errors["charge"] = "*Please enter price per session";
+      }
+
+      if (typeof fields["charge"] !== "undefined") {
+        if (!fields["charge"].match(/^[0-9]*$/)) {
+          formIsValid = false;
+          errors["charge"] = "*Please enter price per session";
+        }
+      }
 
       if (!fields["password"]) {
         formIsValid = false;
@@ -142,11 +160,11 @@ class RegisterForm2 extends Component {
             <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
             <div className="errorMsg">{this.state.errors.password}</div>
             <label>Service Type:</label>
-            <input type="text" name="serviceType" value={this.state.fields.username} onChange={this.handleChange} />
+            <input type="text" name="serviceType" value={this.state.fields.serviceType} onChange={this.handleChange} />
             <div className="errorMsg">{this.state.errors.username}</div>
             <label>Per Session Charge:</label>
-            <input type="text" name="charge" value={this.state.fields.password} onChange={this.handleChange} />
-            <div className="errorMsg">{this.state.errors.password}</div>
+            <input type="text" name="charge" value={this.state.fields.charge} onChange={this.handleChange} />
+            <div className="errorMsg">{this.state.errors.charge}</div>
             <div className="row">
               <div className="col-6">
               <input type="submit" className="btn btn-primary btn-md btnreg" value="Register"/>

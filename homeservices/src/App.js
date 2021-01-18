@@ -5,7 +5,6 @@ import Contact from './components/ContactUsComponent';
 import Footer from './components/FooterComponent';
 import Workflow from './components/WorkflowComponent';
 import About from './components/AboutUsComponent';
-import ServiceModal from './components/ServiceModalComponent';
 import './App.css';
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
       <About/>
       <Contact/>
       <Footer/>
-      <ServiceModal/>
     </>
   );
 }

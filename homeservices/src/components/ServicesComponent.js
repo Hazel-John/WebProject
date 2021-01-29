@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import ServiceModal from './ServicesModalComponent';
+import './WelcomeUserComponent';
+import Login from './LoginComponent';
 
 class Services extends Component{
 
@@ -8,16 +10,29 @@ class Services extends Component{
         super(props);
         this.state = {
             open: false,
+            login: false
         }
         this.tos = null;
         this.openservices = this.openservices.bind(this);
     }
 
 
+    loginmodel(){
+        this.setState({
+            login: !this.state.login
+        })
+    }
+
     openservices(tof){
-        this.tof = tof;
-        console.log('Hello');
-        this.setState({open: !this.state.open});
+        if(global.username == ''){
+            {this.setState({login:true})}
+        }
+        else{
+            this.tof = tof;
+            console.log('Hello');
+            this.setState({open: !this.state.open});
+        }
+        
 
     }
 
@@ -91,6 +106,7 @@ class Services extends Component{
                 </div>
                 </section>
                 {this.state.open?<ServiceModal isOpen={this.state.open} serviceType={this.tof}/>:null}
+                {this.state.login?<Login/>:null}
                 </>
             );
         }

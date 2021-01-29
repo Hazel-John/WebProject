@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
-  width: 1800px;
+  width: 100%;
   height: 450px;
 }
 
@@ -26,6 +26,14 @@
   margin-bottom: 5px;
   margin-top:5px;
   padding: 5px;
+}
+
+.priceradio{
+  margin-left: 150px;
+}
+
+.modaldisplay{
+  display: inline;
 }
 /* 
 ---------------------------------------------
@@ -670,3 +678,7 @@ WorkProcess
   margin-top: 20px;
 }
 
+.center {
+  padding: 17px 0;
+  text-align: center;
+}

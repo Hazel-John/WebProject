@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import {  Modal, ModalBody } from 'reactstrap';
 import axios from 'axios';
 
 class RegisterForm extends Component {

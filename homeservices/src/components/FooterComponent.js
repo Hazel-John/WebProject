@@ -18,11 +18,11 @@ class Footer extends Component{
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <ul class="social">
-                            <li><a href="#">{facebook}</a></li>
-                            <li><a href="#">{github}</a></li>
-                            <li><a href="#">{twitter}</a></li>
-                            <li><a href="#">{linkedin}</a></li>
-                            <li><a href="#">{googleps}</a></li>
+                            <li><a href="https://www.facebook.com/">{facebook}</a></li>
+                            <li><a href="https://github.com/">{github}</a></li>
+                            <li><a href="https://twitter.com/?lang=en">{twitter}</a></li>
+                            <li><a href="https://www.linkedin.com/">{linkedin}</a></li>
+                            <li><a href="https://myaccount.google.com/">{googleps}</a></li>
                         </ul>
                     </div>
                 </div>

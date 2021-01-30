@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal,  ModalBody } from 'reactstrap';
+import axios from 'axios';
+import './WelcomeUserComponent';
 
 
 class Login extends Component {
@@ -8,13 +10,36 @@ class Login extends Component {
       this.state = {
         displayModal: true,
         fields: {},
-        errors: {}
+        errors: {},
+        users : null
       };
 
+      
       this.handleChange = this.handleChange.bind(this);
       this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
       this.toggle = this.toggle.bind(this);
+      this.componentDidMount = this.componentDidMount.bind(this);
+      this.userdetails = null;
     }
+
+    // state = {
+    //   currentLocale: ''
+    // }
+  
+    // changeLocale(locale){
+    //   this.setState({currentLocale: locale})
+    // }
+
+    componentDidMount(){
+      axios.get('http://localhost:5000/users/')
+      .then(response => {
+          console.log(response.data[0]);
+          this.setState({
+              users: response.data,
+          })
+      })
+      .catch(err => {console.log(err)})
+  }
     
     toggle() {
       this.setState({
@@ -23,10 +48,6 @@ class Login extends Component {
     }
     
   
-  
-    onSubmit() {
-      this.props.onLogin();
-    }
 
     handleChange(e) {
       let fields = this.state.fields;
@@ -43,8 +64,11 @@ class Login extends Component {
           let fields = {};
           fields["username"] = "";
           fields["password"] = "";
+          global.username = this.userdetails.username;
+          global.email = this.userdetails.emailid;
+          global.mobile = this.userdetails.mobileno;
           this.setState({fields:fields});
-          alert("Form submitted");
+          this.toggle();
       }
 
     }
@@ -54,17 +78,11 @@ class Login extends Component {
       let fields = this.state.fields;
       let errors = {};
       let formIsValid = true;
+      let flaguser = false;
 
       if (!fields["username"]) {
         formIsValid = false;
         errors["username"] = "*Please enter your username.";
-      }
-
-      if (typeof fields["username"] !== "undefined") {
-        if (!fields["username"].match(/^[a-zA-Z ]*$/)) {
-          formIsValid = false;
-          errors["username"] = "*Please enter alphabet characters only.";
-        }
       }
 
       if (!fields["password"]) {
@@ -72,11 +90,20 @@ class Login extends Component {
         errors["password"] = "*Please enter your password.";
       }
 
-      if (typeof fields["password"] !== "undefined") {
-        if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
-          formIsValid = false;
-          errors["password"] = "*Please enter secure and strong password.";
+      this.state.users.map((user)=>{
+        if(user.username==fields["username"]){
+          flaguser = true;
+          if(user.password!=fields["password"]){
+            formIsValid = false;
+            errors["password"] = "*Incorrect password."
+          }
+          this.userdetails = user;
         }
+      })
+
+      if(!flaguser){
+        formIsValid = false;
+        errors["username"] = "*User not registered.";
       }
 
       this.setState({
@@ -90,6 +117,8 @@ class Login extends Component {
 
 
   render() {
+
+
     return (
     <Modal isOpen={this.state.displayModal} id="modal">
       <ModalBody>

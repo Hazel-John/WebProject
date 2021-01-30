@@ -1,35 +1,53 @@
 import React,{Component} from 'react';
-import ServiceModal from './ServiceModalComponent';
+import ServiceModal from './ServicesModalComponent';
+import './WelcomeUserComponent';
+import Login from './LoginComponent';
 
 class Services extends Component{
 
+    
     constructor(props){
         super(props);
-
+        this.state = {
+            open: false,
+            login: false
+        }
+        this.tos = null;
         this.openservices = this.openservices.bind(this);
     }
 
-    openservices(typeofservice){
-        switch(typeofservice){
-            case 'plumbing': <ServiceModal type="plumbing"/>; break;
-            case 'electrician' : <ServiceModal type="electrician"/>; break;
-            case 'carpentry' : <ServiceModal type="carpentry"/>; break;
-            case 'pestControl' : <ServiceModal type="pestControl"/>; break;
-            case 'cleaning' : <ServiceModal type="cleaning"/>; break;
-            case 'homeSalon' : <ServiceModal type="homeSalon"/>; break;
+
+    loginmodel(){
+        this.setState({
+            login: !this.state.login
+        })
+    }
+
+    openservices(tof){
+        if(global.username == ''){
+            {this.setState({login:true})}
         }
+        else{
+            this.tof = tof;
+            console.log('Hello');
+            this.setState({open: !this.state.open});
+        }
+        
+
     }
 
     render(){
         return(
+             
+            <>
                 <section class="section home-feature">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-lg-12">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
-                                    <div class="features-small-item" onClick={this.openservices('plumbing')}>
-                                        <div class="icon">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12" >
+                                    <div class="features-small-item" onClick={()=>{this.openservices('Plumbing');}}>
+                                        <div class="icon" >
                                             <i><img width="150" height="150" src="plumber.jpg" alt=""/></i>
                                         </div>
                                         <h5 class="features-title">Plumbing</h5>
@@ -37,7 +55,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
-                                    <div class="features-small-item " onclick="openservices('electrician')">
+                                    <div class="features-small-item " onClick={()=>{this.openservices('Electrician');}}>
                                         <div class="icon">
                                             <i><img width="150" height="150" src="electrician.jpg" alt=""/></i>
                                         </div>
@@ -46,7 +64,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
-                                    <div class="features-small-item" onclick="openservices('carpentry')">
+                                    <div class="features-small-item" onClick={()=>{this.openservices('Carpentry');}}>
                                         <div class="icon">
                                             <i><img width="150" height="150" src="carpenter.jpg" alt=""/></i>
                                         </div>
@@ -55,7 +73,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
-                                    <div class="features-small-item" onclick="openservices('pestControl')">
+                                    <div class="features-small-item" onClick={()=>{this.openservices('Pest Control');}}>
                                         <div class="icon">
                                             <i><img width="150" height="150" src="pestControl.jpg" alt=""/></i>
                                         </div>
@@ -64,7 +82,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
-                                    <div class="features-small-item" onclick="openservices('cleaning')">
+                                    <div class="features-small-item" onClick={()=>{this.openservices('Cleaning');}}>
                                         <div class="icon">
                                             <i><img width="150" height="150" src="cleaning.jpg" alt=""/></i>
                                         </div>
@@ -73,7 +91,7 @@ class Services extends Component{
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
-                                    <div class="features-small-item" onclick="openservices('homeSalon')">
+                                    <div class="features-small-item" onClick={()=>{this.openservices('Home Salon');}}>
                                         <div class="icon">
                                             <i><img width="150" height="150" src="salon.jpg" alt=""/></i>
                                         </div>
@@ -84,8 +102,12 @@ class Services extends Component{
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 </section>
+                {this.state.open?<ServiceModal isOpen={this.state.open} serviceType={this.tof}/>:null}
+                {this.state.login?<Login/>:null}
+                </>
             );
         }
     }

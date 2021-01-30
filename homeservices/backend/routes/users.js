@@ -3,15 +3,18 @@ let User = require('../models/users.model');
 
 router.route('/').get((req, res) => {
     User.find()
-    .then((users) => res.json(users))
+    .then((response) => res.json(response))
     .catch(err => res.status(400).json('Error: '+err));
 });
 
 router.route('/add').post((req, res) => {
     const username = req.body.username;
     const password = req.body.password;
+    const emailid = req.body.emailid;
+    const address = req.body.address;
+    const mobileno = Number(req.body.mobileno);
 
-    const newUser = new User({username, password});
+    const newUser = new User({username, password, emailid, address, mobileno});
 
     newUser.save()
     .then(() => res.json('User added successfully'))

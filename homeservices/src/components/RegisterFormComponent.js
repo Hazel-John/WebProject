@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-
+import {  Modal, ModalBody } from 'reactstrap';
+import axios from 'axios';
 
 class RegisterForm extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class RegisterForm extends Component {
     
   
     onSubmit() {
-      this.props.onLogin();
+      //this.props.onLogin();
     }
 
     handleChange(e) {
@@ -44,11 +44,22 @@ class RegisterForm extends Component {
           fields["emailid"] = "";
           fields["mobileno"] = "";
           fields["password"] = "";
+          fields["address"] = "";
           this.setState({fields:fields});
-          alert("Form submitted");
+          //alert("Form submitted");
+          var customer={
+            "username": this.state.fields["username"],
+            "password": this.state.fields["password"],
+            "emailid": this.state.fields["emailid"],
+            "address": this.state.fields["address"],
+            "mobileno": this.state.fields["mobileno"],
+          };
+          console.log(customer);
+          axios.post('http://localhost:5000/users/add',customer)
+          .then(res => console.log(res.data))
+          .catch(err => console.log(err))
+        }
       }
-
-    }
 
     validateForm() {
 
@@ -135,7 +146,7 @@ class RegisterForm extends Component {
             <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
             <div className="errorMsg">{this.state.errors.password}</div>
             <label>Address</label>
-            <textarea rows="3" name="address" value={this.state.fields.username} onChange={this.handleChange}></textarea>
+            <textarea rows="3" name="address" value={this.state.fields.address} onChange={this.handleChange}></textarea>
             <div className="errorMsg">{this.state.errors.username}</div>
             <div className="row">
               <div className="col-6">

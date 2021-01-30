@@ -1,14 +1,19 @@
 import React,{Component} from 'react';
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Button, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input } from 'reactstrap';
-import {NavLink} from 'react-router-dom';
+import {  Jumbotron } from 'reactstrap';
 import RegisterForm from './RegisterFormComponent';
 import RegisterForm2 from './RegisterForm2Component';
 import Login from './LoginComponent';
 import { Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
+import './WelcomeUserComponent';
 
 
 
 class Header extends Component{
+
+    // static contextTypes = {
+    //     locale: PropTypes.object
+    // }
+
     constructor() {
         super();
     
@@ -16,13 +21,16 @@ class Header extends Component{
           showLogin: false,
           showLogin2:false,
           drop:false,
-          login:false
+          login:false,
+          welcome: ''
         };
         this.showLoginModal = this.showLoginModal.bind(this);
         this.showLoginModal2 = this.showLoginModal2.bind(this);  
         this.droptoggle = this.droptoggle.bind(this); 
         this.loginmodel = this.loginmodel.bind(this);     
     }
+
+    
 
     droptoggle() {
         this.setState({
@@ -52,12 +60,20 @@ class Header extends Component{
       }
       
     render(){
+        var username = global.username;
+        if(username!='' && this.state.welcome!=('Welcome, '+username)){
+            this.setState({
+                welcome : 'Welcome, '+username
+            })
+            this.forceUpdate();
+        }
+        console.log(username);
         return(
             <>
                 <header class="header-area header-sticky">
                     <div class="container">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-11">
                                 <nav class="main-nav">
                                     <a href="#" class="logo">
                                         <img width="70" height="70"src="logo.jpg" alt="Softy Pinko"/>
@@ -87,6 +103,9 @@ class Header extends Component{
                                         <span>Menu</span>
                                     </a>
                                 </nav>
+                            </div>
+                            <div class="col-1 center">
+                                <p>{this.state.welcome}</p>
                             </div>
                         </div>
                     </div>

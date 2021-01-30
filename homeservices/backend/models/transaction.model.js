@@ -2,28 +2,14 @@ const mongoose = require('mongoose');
 
 const Schema  =mongoose.Schema;
 
-const serviceProviderSchema = new Schema({
+const TransactionSchema = new Schema({
     username: {
         type: String,
         required: true,
         unique: true,
         trim: true,
-        minlength: true,
-    },
-    password: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        minlength: true,
     },
     emailid: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-    },
-    serviceType: {
         type: String,
         required: true,
         trim: true,
@@ -34,17 +20,22 @@ const serviceProviderSchema = new Schema({
         unique: true,
         trim: true,
     },
-    charge: {
+    paymentid:{
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+    },
+    amount: {
         type: Number,
         required: true,
         trim: true,
     }
-
 }, {
     timestamps: true,
 });
 
 
-const ServiceProvider = mongoose.model('service provider', serviceProviderSchema);
+const Transaction = mongoose.model('transaction details', TransactionSchema);
 
-module.exports = ServiceProvider;
+module.exports = Transaction;

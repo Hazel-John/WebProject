@@ -17,7 +17,6 @@ function App() {
       <About/>
       <Contact/>
       <Footer/>
-      <ServiceModal/>
     </>
   );
 }

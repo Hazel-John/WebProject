@@ -99,14 +99,14 @@ class Login extends Component {
             <label>Username</label>
             <input type="text" name="username" value={this.state.fields.username} onChange={this.handleChange} />
             <div className="errorMsg">{this.state.errors.username}</div>
-
+            
             <label>Password:</label>
             <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
             <div className="errorMsg">{this.state.errors.password}</div>
 
             <div className="row">
-              <div className="col-6">
-              <input type="submit" className="btn btn-primary btn-md btnreg" value="Login"/>
+              <div className="col-6" id="log">
+              <input type="submit" className="btn btn-primary btn-md btnreg"  value="Login"/>
               </div>
             <div class="col-6">
             <a className="btn btn-primary btn-md btnreg" onClick={this.toggle}>Close</a>

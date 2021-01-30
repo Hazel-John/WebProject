@@ -9,6 +9,7 @@ class ServiceModal extends Component {
     }
 
     render(){
+        
         return (
             <>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalQuickView">Launch modal</button>
